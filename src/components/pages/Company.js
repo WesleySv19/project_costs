@@ -1,4 +1,4 @@
-function Company() {
+const Company = () => {
     return (
         <h1>Company</h1>
     )
