@@ -8,7 +8,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Projects from "./components/pages/Projects";
 
-function App() {
+const App = () => {
   return (
 
     <Router>
