@@ -5,9 +5,10 @@ import SubmitButton from '../form/SubmitButton'
 
 import { useState, useEffect } from 'react'
 
-const ProjectForm = ({ btnText }) => {
+const ProjectForm = ({ btnText, handleSubmit, projectData }) => {
 
     const [categories, setCategories] = useState([])
+    const [project, setProject] = useState(projectData || {})
     const url = 'http://localhost:5000/categories'
     
     useEffect(() => {
@@ -24,11 +25,18 @@ const ProjectForm = ({ btnText }) => {
         .catch(err => console.log(err))
     }, [])
    
+    const submit = (e) => {
+        e.preventDefault()
+        handleSubmit(project)
+    }
 
+    const handleChange = (e) => {
+        setProject({ ...project, [e.target.name]: e.target.value })
+    }
     return (
-        <form className={styles.form}>
-            <Input type='text' text='Nome do projeto' name='name' placeholder='Insira o nome do projeto'/>
-            <Input type='number' text='Orçamento do projeto' name='budget' placeholder='Insira o orçamento total'/>
+        <form onSubmit={submit} className={styles.form}>
+            <Input type='text' text='Nome do projeto' name='name' placeholder='Insira o nome do projeto' handleOnchange={handleChange}/>
+            <Input type='number' text='Orçamento do projeto' name='budget' placeholder='Insira o orçamento total' handleOnchange={handleChange}/>
 
             <Select name='category_id' text='Selecione a categoria' options={categories}/>
 
