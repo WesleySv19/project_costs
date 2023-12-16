@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 const NewProject = () => {
 
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
     const createPost = (project) => {
         const url = "http://localhost:5000/projects"
@@ -20,6 +20,7 @@ const NewProject = () => {
         }).then((res) => res.json())
             .then((data) => {
                 console.log(data)
+                navigate("/projects", { message: 'Projeto criado com sucesso!' } )
             }).catch(err => console.log(err))
     }
 
