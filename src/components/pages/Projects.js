@@ -26,7 +26,12 @@ const Projects = () => {
         headers: {
           "Content-type": "application/json"
         },
-      }).then()
+      }).then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setProjects(data)
+      })
+      .catch(err => console.log(err))
     }, [])
 
   return (
@@ -38,7 +43,15 @@ const Projects = () => {
       {message && <Message type="success" msg={message}/>}
 
       <Container customClass="start">
-        <p>Projetos...</p>
+        {projects.length > 0 &&
+        projects.map((project) => (
+          <ProjectCard
+          id={project.id} 
+          name={project.name}
+          budget={project.budget}
+          category={project.category}
+          key={project.id} />
+        ))}
 
       </Container>
     </div>
