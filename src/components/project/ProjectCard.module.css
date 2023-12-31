@@ -52,6 +52,10 @@
   .category_text .planejamento {
     background-color: #fbe7c6;
   }
+
+  .category_text .recursos-humanos {
+    background-color: #EEE8AA;
+  }
   
  .project_card_actions {
   margin-top: 1.2em;
